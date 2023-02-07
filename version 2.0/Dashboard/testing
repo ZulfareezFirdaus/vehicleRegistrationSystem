@@ -1,0 +1,71 @@
+$('#save').click(function(){
+        var student_nokp = $('#student_nokp').val();
+        var student_form = $('.student_form').val();
+        var student_class = $('.student_class').val();
+        var student_name = $('.student_name').text();
+        var student_address = $('.student_address').text();
+        var student_noPhonePelajar = $('.student_noPhonePelajar').text();
+        var student_noPhoneWaris = $('.student_noPhoneWaris').text();
+        var student_gender = $('.student_gender').val();
+        
+        var StudVehicle_regNum = $('.StudVehicle_regNum').text();
+        var StudVehicle_Type = $('.StudVehicle_Type').val();
+        var StudVehicle_ownerName = $('.StudVehicle_ownerName').text();
+        var StudVehicle_ownerPhone = $('.StudVehicle_ownerPhone').text();
+        var StudVehicle_relationship = $('.StudVehicle_relationship').val();
+        var StudVehicle_license = $('.StudVehicle_license').val();
+        
+        if(student_name == ""){
+            $('.student_name').css("box-shadow", "0 0 3pt 1pt #ff000085"); 
+        }
+        if(student_nokp == ""){
+            $('#student_nokp').css("box-shadow", "0 0 3pt 1pt #ff000085"); 
+        }
+        if(student_address == ""){
+            $('.student_address').css("box-shadow", "0 0 3pt 1pt #ff000085"); 
+        }
+        if(student_noPhonePelajar == ""){
+            $('.student_noPhonePelajar').css("box-shadow", "0 0 3pt 1pt #ff000085"); 
+        }
+        if(student_noPhoneWaris == ""){
+            $('.student_noPhoneWaris').css("box-shadow", "0 0 3pt 1pt #ff000085"); 
+        }
+        if(StudVehicle_regNum == ""){
+            $('.StudVehicle_regNum').css("box-shadow", "0 0 3pt 1pt #ff000085"); 
+        }
+        if(StudVehicle_ownerName == ""){
+            $('.StudVehicle_ownerName').css("box-shadow", "0 0 3pt 1pt #ff000085"); 
+        }
+        if(StudVehicle_ownerPhone == ""){
+            $('.StudVehicle_ownerPhone').css("box-shadow", "0 0 3pt 1pt #ff000085"); 
+        }
+        
+        if(student_nokp != "" && student_name != "" && student_address != "" && student_noPhonePelajar != "" && student_noPhoneWaris != "" && StudVehicle_regNum != "" && StudVehicle_ownerName != "" && StudVehicle_ownerPhone != ""){
+            $.ajax({
+                url:"../insert.php",
+                method:"POST",
+                data:{
+                    student_nokp:student_nokp, 
+                    student_form:student_form, 
+                    student_class:student_class,
+                    student_name:student_name,
+                    student_address:student_address,
+                    student_noPhonePelajar:student_noPhonePelajar,
+                    student_noPhoneWaris:student_noPhoneWaris,
+                    student_gender:student_gender,
+
+                    StudVehicle_regNum:StudVehicle_regNum,
+                    StudVehicle_Type:StudVehicle_Type,
+                    StudVehicle_ownerName:StudVehicle_ownerName,
+                    StudVehicle_ownerPhone:StudVehicle_ownerPhone,
+                    StudVehicle_relationship:StudVehicle_relationship,
+                    StudVehicle_license:StudVehicle_license
+                },
+                success:function(data){
+                    alert(data);
+                    $("td[contentEditable='true']").text("");
+                    $('#student_nokp').val("");
+                }
+            });
+        }
+    });
